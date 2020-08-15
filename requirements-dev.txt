@@ -1,2 +1,6 @@
 django
-djanorestframework
+djangorestframework
+django-filter
+
+python-dotenv
+psycopg2-binary
