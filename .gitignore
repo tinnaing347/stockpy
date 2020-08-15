@@ -1,0 +1,8 @@
+.python-version
+*.ipynb
+.env
+*.vscode
+
+__pycache__/
+*.py[cod]
+*$py.class
