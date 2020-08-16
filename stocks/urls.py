@@ -8,5 +8,6 @@ urlpatterns = [
     path('', views.StocksRootView.as_view(), name='stocks-root'),
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     path('symbol/', views.SymbolListView.as_view(), name='symbol-list'),
+    path('real-time-stock/', views.RealTimeStockListView.as_view(), 'real-time-stock-list'),
     path('daily-stock/', views.DailyStockListView.as_view(), name='daily-stock-list'),
 ]

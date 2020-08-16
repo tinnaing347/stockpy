@@ -14,6 +14,31 @@ class Symbol(models.Model):
     
     symbol = models.CharField(max_length=5, blank=True, primary_key=True)
 
+
+#haven't decided about timescale, but it better be consistent across all the symbols
+class RealTimeStock(models.Model): 
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(fields=['symbol', 'date_time'], name='unique__symbol_date_time'),    
+        ]
+
+        indexes = [
+            models.Index(fields=['symbol', 'date_time']),
+        ]
+    
+    symbol = models.ForeignKey(Symbol, on_delete=models.CASCADE, null=False, related_name='real_time_stock', db_column='symbol')
+    date_time = models.DateTimeField(blank=True, null=True) #t
+    close_last = models.FloatField(blank=True, null=True) #pc
+    current_price = models.FloatField(blank=True, null=True) #c
+    open_price = models.FloatField(blank=True, null=True) #o
+    high = models.FloatField(blank=True, null=True) #h
+    low = models.FloatField(blank=True, null=True) #l
+
+    def __str__(self):
+        return '<RealTimeStock: symbol: {}, date: {}, high: {}, low: {}, open: {}>'.format(
+            self.symbol,self.date_time, self.high, self.low, self.open)
+
+
 class DailyStock(models.Model):
 
     class Meta:

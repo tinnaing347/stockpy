@@ -1,11 +1,15 @@
 from rest_framework import serializers
-from .models import Symbol, DailyStock
+from .models import Symbol, RealTimeStock, DailyStock
 
 class SymbolSerializer(serializers.ModelSerializer):
     class Meta:
         model = Symbol
         fields = '__all__'
 
+class RealTimeStockSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = DailyStock
+        fields = '__all__'
 
 class DailyStockSerializer(serializers.ModelSerializer):
     class Meta:
